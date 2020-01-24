@@ -1,0 +1,84 @@
+
+<!-- Breadcrumb Section Begin -->
+<div class="breacrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text product-more">
+                    <a href="#"><i class="fa fa-home"></i> Home</a>
+                    <a href="shop">Shop</a>
+                    <span>Shopping Cart</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section Begin -->
+
+<!-- Shopping Cart Section Begin -->
+<section class="shopping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="cart-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th class="p-name">Product Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th><i class="ti-close"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="items.length === 0; else loadItems">
+                            <tr>
+                                <td>No items found</td>
+                            </tr>
+                        </tbody>
+                        <ng-template #loadItems>
+                            <tbody>
+                                <tr *ngFor="let item of items">
+                                    <td class="cart-pic first-row"><img [src]="item.product.image" alt=""></td>
+                                    <td class="cart-title first-row">
+                                        <h5>{{item.product.name}}</h5>
+                                    </td>
+                                    <td class="p-price first-row">${{item.product.price}}</td>
+                                    <td class="qua-col first-row">
+                                        <div class="quantity">
+                                            <div class="pro-qty">
+                                                <input type="text" value="1">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="total-price first-row">${{item.product.price*item.quantity}}</td>
+                                    <td class="close-td first-row"><i class="ti-close" (click)="deleteItem(item.id)"></i></td>
+                                </tr>
+                            </tbody>
+                        </ng-template>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="cart-buttons">
+                            <a href="list" class="primary-btn continue-shop">Continue shopping</a>
+                            <a class="primary-btn up-cart" (click)="updateCart()" *ngIf="items.length !== 0">Update cart</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 offset-lg-4" *ngIf="items.length !== 0">
+                        <div class="proceed-checkout">
+                            <ul>
+                                <li class="subtotal">Subtotal <span>${{cart.subtotal}}</span></li>
+                                <li class="cart-total">Total <span>${{cart.total}}</span></li>
+                            </ul>
+                            <a href="checkout" class="proceed-btn">PROCEED TO CHECK OUT</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shopping Cart Section End -->
+
