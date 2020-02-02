@@ -9,6 +9,8 @@
 
 'use strict';
 
+/// <reference path="../../../node_modules/@types/index.d.ts" />
+
 (function ($) {
 
     /*------------------

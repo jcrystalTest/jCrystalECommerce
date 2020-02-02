@@ -11,7 +11,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
 
 const routes: Routes = [
   { path: '', component: ShopComponent},
-  { path: 'product', component: ProductComponent},
+  { path: 'product/:id', component: ProductComponent},
   { path: 'list', component: ListProductsComponent},
   { path: 'cart', component: CartComponent},
   { path: 'checkout', component: CheckoutComponent},

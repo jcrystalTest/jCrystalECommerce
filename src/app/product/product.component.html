@@ -24,7 +24,8 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="product-pic-zoom">
-                            <img class="product-big-img" src="assets/img/product-single/product-1.jpg" alt="">
+                            <!-- <img class="product-big-img" src="assets/img/product-single/product-1.jpg" alt=""> -->
+                            <img class="product-big-img" [src]="product?.image || 'assets/img/product-single/product-1.jpg'" alt="Product image">
                             <div class="zoom-icon">
                                 <i class="fa fa-search-plus"></i>
                             </div>
@@ -46,7 +47,8 @@
                         <div class="product-details">
                             <div class="pd-title">
                                 <span>oranges</span>
-                                <h3>Pure Pineapple</h3>
+                                <!-- <h3>Pure Pineapple</h3> -->
+                                <h3>{{product?.name}}</h3>
                                 <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
                             </div>
                             <div class="pd-rating">
@@ -58,8 +60,9 @@
                                 <span>(5)</span>
                             </div>
                             <div class="pd-desc">
-                                <p>Lorem ipsum dolor sit amet, consectetur ing elit, sed do eiusmod tempor sum dolor
-                                    sit amet, consectetur adipisicing elit, sed do mod tempor</p>
+                                <p>{{product?.description}}</p>
+                                <!-- <p>Lorem ipsum dolor sit amet, consectetur ing elit, sed do eiusmod tempor sum dolor
+                                    sit amet, consectetur adipisicing elit, sed do mod tempor</p> -->
                                 <h4>$495.00 <span>629.99</span></h4>
                             </div>
                             <div class="pd-color">
@@ -174,7 +177,8 @@
                                         <tr>
                                             <td class="p-catagory">Price</td>
                                             <td>
-                                                <div class="p-price">$495.00</div>
+                                                <!-- <div class="p-price">$495.00</div> -->
+                                            <div class="p-price">${{product.price}}</div>
                                             </td>
                                         </tr>
                                         <tr>

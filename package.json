@@ -1,9 +1,13 @@
 {
   "name": "shoe-ecommerce",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "author": {
+    "name": "Vladimir Ovsyukov",
+    "email": "vovansuper@mail.ru"
+  },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -o",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -19,7 +23,10 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "@types/jquery": "^3.3.31",
+    "moment": "^2.24.0",
     "rxjs": "~6.4.0",
+    "sweetalert2": "^9.7.1",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },

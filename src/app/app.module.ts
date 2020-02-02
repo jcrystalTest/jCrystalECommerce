@@ -12,8 +12,14 @@ import { ShopComponent } from './shop/shop.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
-import { FormsModule } from '../../node_modules/@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '../../node_modules/@angular/forms';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ManagerCart } from "./jcrystal/services/ManagerCart";
+import { ManagerContact } from "./jcrystal/services/ManagerContact";
+import { ManagerProduct } from "./jcrystal/services/ManagerProduct";
+import { DefaultOnError, NetworkBase, RequestError, TipoError, alertInfo, defaultOnError } from "./jcrystal/services/NetworkBase";
+import { ErrorService } from "./jcrystal/services/error.services";
 
 @NgModule({
   declarations: [
@@ -31,9 +37,14 @@ import { FavoritesComponent } from './favorites/favorites.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    DefaultOnError,
+    { provide: RequestError, useValue: RequestError }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
