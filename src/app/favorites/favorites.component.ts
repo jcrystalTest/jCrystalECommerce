@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TempProduct } from '../list-products/list-products.component';
+import { ProductNormal } from '../jcrystal/entities/ProductNormal';
+import { HttpClient } from '@angular/common/http';
+import { ManagerCart } from '../jcrystal/services/ManagerCart';
 
 @Component({
   selector: 'app-favorites',
@@ -8,14 +10,18 @@ import { TempProduct } from '../list-products/list-products.component';
 })
 export class FavoritesComponent implements OnInit {
 
-  products=[];
+  cartId:number;
+  products:ProductNormal[]=[];
 
-  constructor() { }
+  constructor(public http: HttpClient,) { }
 
   ngOnInit() {
-    this.products.push(new TempProduct(1,"Guangzhou sweater", 13 , null, "sweater", "assets/img/products/product-2.jpg"));
-    for(let i = 0; i < 2; i++){
-      this.products.push(new TempProduct(1,"Guangzhou sweater", 13 , 35, "sweater", "assets/img/products/product-2.jpg"));
+    if(this.cartId){
+      ManagerCart.listFavorites(this,this.cartId,resp=>{
+
+      },error=>{
+        alert(error.mensaje);
+      });
     }
   }
 

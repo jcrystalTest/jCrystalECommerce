@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-export class TempProduct {
-  // No usar esto
-  constructor(public id:number,public name:string, public price:number, public oldPrice:number, public category:string, public image:string) { }
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { ProductNormal } from '../jcrystal/entities/ProductNormal';
+import { ManagerProduct } from '../jcrystal/services/ManagerProduct';
+import { ManagerCart } from '../jcrystal/services/ManagerCart';
+import { Categories } from '../jcrystal/entities/enums/Categories';
+import { Size } from '../jcrystal/entities/enums/Size';
 
-}
 
 @Component({
   selector: 'app-list-products',
@@ -12,23 +15,78 @@ export class TempProduct {
 })
 export class ListProductsComponent implements OnInit {
 
-  products = [];
-  categories =["Men", "Women", "Kids"];
+  products:ProductNormal[] = [];
+  categories:string[];
+  idCart:number;
 
-  constructor() { }
+  constructor(public router: Router, public http: HttpClient) { }
 
   ngOnInit() {
-    //---Example-----
-    this.products.push(new TempProduct(1,"Guangzhou sweater", 13 , null, "sweater", "assets/img/products/product-2.jpg"));
-    for(let i = 0; i < 50; i++){
-      this.products.push(new TempProduct(1,"Guangzhou sweater", 13 , 35, "sweater", "assets/img/products/product-2.jpg"));
-    }
-    //---------------
+    ManagerProduct.getProducts(this,rep=>{
+      console.log(rep.length);
+      this.products = rep;
+    },error=>{
+      alert("Error found: "+error.mensaje);
+    });
+    ManagerProduct.getCategories(this,rsp=>{
+      this.categories = rsp;
+    },error=>{
+      alert(error.mensaje);
+    });
   }
 
   addToCart (id:number){
-    //TODO
-    alert("Prodcut add to your cart")
+    ManagerCart.addToCart(this,this.idCart,id,1,rsp=>{
+      alert("Prodcut add to your cart");
+    },error=>{
+      alert(error.mensaje);
+    });
+  }
+
+  getCategoryName(id:number):string{
+    return Categories.getFromId(id).name
+  }
+
+  quickView(id:number){
+    this.router.navigate(['/product'], { queryParams: { id: id }});
+  }
+  addToFavorites(id:number){
+    let cartId:number =0;
+    ManagerCart.addToFavorites(this,cartId,id,()=>{
+      this.router.navigate(['']);
+    },error=>{
+      alert(error.mensaje);
+    });
+  }
+
+  filterBySize(size:string){
+    let s:Size = Size.XS;
+    if(size==='s'){
+      s= Size.S;
+    }else if(size==='m'){
+      s= Size.M;
+    }else if(size==='l'){
+      s= Size.L;
+    }
+    /**ManagerProduct.filterProductsBySize(this,s,resp=>{
+      this.products = resp;
+    },error=>{
+      alert(error.mensaje);
+    });**/
+  }
+
+  filterByCategory(category:string){
+    let c:Categories= Categories.MEN;
+    if(category===Categories.WOMEN.name){
+      c= Categories.WOMEN;
+    }else if(category===Categories.KIDS.name){
+      c= Categories.KIDS;
+    }
+    ManagerProduct.filterProductsByCategory(this,c,rsp=>{
+      this.products = rsp;
+    },error=>{
+      alert(error.mensaje);
+    });
   }
 
 }

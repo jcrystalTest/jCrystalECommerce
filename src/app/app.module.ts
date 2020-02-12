@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 
 import { FormsModule } from '../../node_modules/@angular/forms';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { FavoritesComponent } from './favorites/favorites.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

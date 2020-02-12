@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TempCart, TempCartItem } from '../cart/cart.component';
-import { TempProduct } from '../list-products/list-products.component';
+import { CartNormal } from '../jcrystal/entities/CartNormal';
+import { HttpClient } from '@angular/common/http';
+import { ManagerCart } from '../jcrystal/services/ManagerCart';
 
 @Component({
   selector: 'app-checkout',
@@ -11,14 +12,19 @@ import { TempProduct } from '../list-products/list-products.component';
 export class CheckoutComponent implements OnInit {
 
   payMetod = false;
-  cart:TempCart;
-  constructor(public router: Router) { }
+  cart:CartNormal;
+  idCart:number;
+  constructor(public http: HttpClient,public router: Router) { }
 
   ngOnInit() {
-    let items:TempCartItem[] = [];
-    items.push(new TempCartItem (1, new TempProduct(1,"Guangzhou sweater", 13 , null, "sweater", "assets/img/products/product-2.jpg"),1));
-    items.push(new TempCartItem (1, new TempProduct(1,"Seet sweater", 14 , 20, "sweater", "assets/img/products/product-1.jpg"),1));
-    this.cart = new TempCart(1, 13+14, 13+14*(1.19),items);
+    //TODO idCart
+    if(this.idCart){
+      ManagerCart.getCart(this,this.idCart,resp=>{
+        this.cart = resp;
+      }, error=>{
+        alert(error.mensaje);
+      });
+    }
   }
 
   checkout(){

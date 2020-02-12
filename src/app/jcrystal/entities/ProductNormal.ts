@@ -1,0 +1,35 @@
+export interface ProductNormal{
+	id : number;
+	setId(id: number);
+	getId() : number;
+	name : string;
+	setName(name: string);
+	getName() : string;
+	description : string;
+	setDescription(description: string);
+	getDescription() : string;
+	category : number;
+	setCategory(category: Categories);
+	getCategory() : Categories;
+	price : number;
+	setPrice(price: number);
+	getPrice() : number;
+	discount : number;
+	setDiscount(discount: number);
+	getDiscount() : number;
+	oldPrice : number;
+	setOldPrice(oldPrice: number);
+	getOldPrice() : number;
+	color : number;
+	setColor(color: Color);
+	getColor() : Color;
+	size : number;
+	setSize(size: Size);
+	getSize() : Size;
+	image : string;
+	setImage(image: string);
+	getImage() : string;
+}
+import {Categories} from "./enums/Categories";
+import {Color} from "./enums/Color";
+import {Size} from "./enums/Size";
