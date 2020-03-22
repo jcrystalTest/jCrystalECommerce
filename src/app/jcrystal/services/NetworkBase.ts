@@ -3,12 +3,14 @@ import { Router } from '@angular/router';
 import { ErrorService } from './error.services';
 import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
+import {Token} from "../entities/Token";
 @Injectable()
 export class DefaultOnError{
 	constructor(private _r: Router, private _e:ErrorService){
 	}
 	onError = (error : RequestError):void =>{
 		if (error.tipoError == TipoError.UNAUTHORIZED) {
+			Token.deleteSession();
 			this._r.navigate(['/login']);
 		}
 		else{
@@ -46,6 +48,7 @@ export class RequestError{
 }
 export const defaultOnError = (error : RequestError)=>{
 	if (error.tipoError == TipoError.UNAUTHORIZED) {
+		Token.deleteSession();
 		window.location.href = '/login';
 	}
 	else if (error.tipoError == TipoError.SERVER_ERROR) {

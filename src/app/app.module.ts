@@ -15,6 +15,11 @@ import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '../../node_modules/@angular/forms';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -27,13 +32,17 @@ import { HttpClientModule } from '@angular/common/http';
     ShopComponent,
     HeaderComponent,
     FooterComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
-import {JSONUtils} from "../JSONUtils";
-import {Injectable} from "@angular/core";
+/* IMPORTS_EXTENSIONS */
+/* END */
 import {ProductNormal} from "./ProductNormal"
 declare var moment: any;
 export class Product implements ProductNormal{
@@ -278,6 +278,8 @@ export module Product{
 		}
 	}
 }
-import {Categories} from "./enums/Categories";
-import {Color} from "./enums/Color";
-import {Size} from "./enums/Size";
+import {Categories} from "../enums/Categories";
+import {Color} from "../enums/Color";
+import {Size} from "../enums/Size";
+import {JSONUtils} from "../JSONUtils";
+import {Injectable} from "@angular/core";

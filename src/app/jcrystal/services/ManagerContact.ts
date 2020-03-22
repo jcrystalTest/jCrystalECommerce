@@ -3,6 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import 'rxjs';
 import {AppConfiguration} from "../../utils/app-configuration";
 import { NetworkBase, defaultOnError, TipoError, RequestError } from '../services/NetworkBase';
+import { environment } from 'src/environments/environment';
 export class ManagerContact{
 	/**
 	* /api/contact/contact
@@ -10,18 +11,18 @@ export class ManagerContact{
 	static contact(base : NetworkBase,name:string,email:string,message:string,onSuccess: () => void,onError : (error : RequestError)=>void = defaultOnError){
 		let params:string = null;
 		let headers =  new HttpHeaders({'Content-Type': 'application/json'});
-		let ruta:string = "http://crystalflash.appspot.com/api/contact/contact";
+		var ruta:string = "http://localhost:8080" + "/api/contact/contact";
 		if (base.onError) {
 			onError = base.onError;
 		}
 		if(AppConfiguration.DEBUG)console.log("GET "+ruta);
-		if (name) {
+		if (name !== null && typeof(name) !== 'undefined') {
 			params = (params===null?"?":(params + "&")) + "name=" + encodeURIComponent(name);
 		}
-		if (email) {
+		if (email !== null && typeof(email) !== 'undefined') {
 			params = (params===null?"?":(params + "&")) + "email=" + encodeURIComponent(email);
 		}
-		if (message) {
+		if (message !== null && typeof(message) !== 'undefined') {
 			params = (params===null?"?":(params + "&")) + "message=" + encodeURIComponent(message);
 		}
 		if (params) {

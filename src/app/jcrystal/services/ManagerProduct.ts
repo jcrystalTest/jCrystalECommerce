@@ -3,6 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import 'rxjs';
 import {AppConfiguration} from "../../utils/app-configuration";
 import { NetworkBase, defaultOnError, TipoError, RequestError } from '../services/NetworkBase';
+import { environment } from 'src/environments/environment';
 export class ManagerProduct{
 	/**
 	* /api/product/filterProductsByCategory
@@ -10,7 +11,7 @@ export class ManagerProduct{
 	static filterProductsByCategory(base : NetworkBase,category:Categories,onSuccess: (r:ProductNormal[])=> void ,onError : (error : RequestError)=>void = defaultOnError){
 		let params:string = null;
 		let headers =  new HttpHeaders({'Content-Type': 'application/json'});
-		let ruta:string = "http://crystalflash.appspot.com/api/product/filterProductsByCategory";
+		var ruta:string = "http://localhost:8080" + "/api/product/filterProductsByCategory";
 		if (base.onError) {
 			onError = base.onError;
 		}
@@ -55,7 +56,7 @@ export class ManagerProduct{
 	static getCategories(base : NetworkBase,onSuccess: (r:string[])=> void ,onError : (error : RequestError)=>void = defaultOnError){
 		let params:string = null;
 		let headers =  new HttpHeaders({'Content-Type': 'application/json'});
-		let ruta:string = "http://crystalflash.appspot.com/api/product/getCategories";
+		var ruta:string = "http://localhost:8080" + "/api/product/getCategories";
 		if (base.onError) {
 			onError = base.onError;
 		}
@@ -97,7 +98,7 @@ export class ManagerProduct{
 	static getProductById(base : NetworkBase,id:number,onSuccess: (r:ProductNormal)=> void ,onError : (error : RequestError)=>void = defaultOnError){
 		let params:string = null;
 		let headers =  new HttpHeaders({'Content-Type': 'application/json'});
-		let ruta:string = "http://crystalflash.appspot.com/api/product/getProductById";
+		var ruta:string = "http://localhost:8080" + "/api/product/getProductById";
 		if (base.onError) {
 			onError = base.onError;
 		}
@@ -135,7 +136,7 @@ export class ManagerProduct{
 	static getProducts(base : NetworkBase,onSuccess: (r:ProductNormal[])=> void ,onError : (error : RequestError)=>void = defaultOnError){
 		let params:string = null;
 		let headers =  new HttpHeaders({'Content-Type': 'application/json'});
-		let ruta:string = "http://crystalflash.appspot.com/api/product/getProducts";
+		var ruta:string = "http://localhost:8080" + "/api/product/getProducts";
 		if (base.onError) {
 			onError = base.onError;
 		}
@@ -172,6 +173,6 @@ export class ManagerProduct{
 		});
 	}
 }
-import {Categories} from "../entities/enums/Categories";
-import {Product} from "../entities/Product";
+import {Categories} from "../enums/Categories";
 import {ProductNormal} from "../entities/ProductNormal";
+import {Product} from "../entities/Product";

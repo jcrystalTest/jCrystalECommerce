@@ -1,5 +1,5 @@
-import {JSONUtils} from "../JSONUtils";
-import {Injectable} from "@angular/core";
+/* IMPORTS_EXTENSIONS */
+/* END */
 import {CartNormal} from "./CartNormal"
 declare var moment: any;
 export class Cart implements CartNormal{
@@ -144,3 +144,5 @@ export module Cart{
 		}
 	}
 }
+import {JSONUtils} from "../JSONUtils";
+import {Injectable} from "@angular/core";
